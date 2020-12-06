@@ -6,6 +6,9 @@
     .modal-content{
         border-radius: 5px 5px 10px 10px;
     }
+    .close:focus{
+        outline: none;
+    }
     .modal-footer{
         justify-content: center;
         border: 0;

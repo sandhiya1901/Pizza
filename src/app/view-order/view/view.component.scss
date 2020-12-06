@@ -123,13 +123,17 @@
             display: inline-block;
         }
         .profile{
-            padding: 5px 12px;
+            text-align: center;
+            height: 45px;
+            width: 45px;
+            padding-top: 2px;
             border-radius: 100%;
             background: $BORDERLIGHTER;
             color: $TEXTLIGHTER;
             font-weight: bold;
             font-size: 28px;
             box-shadow: 1px 1px 3px $BORDERDARKER;
+            display: inline-block;
         }
         .head{
             font-size: 18px;
@@ -137,7 +141,7 @@
             color: $TEXTDARKER;
         }
         .contact-info{
-            margin-top: 20px;
+            margin-top: 15px;
             .contact-email{
                 margin: 7px 0;
                 display: inline-block;

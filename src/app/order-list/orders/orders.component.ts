@@ -82,9 +82,9 @@ export class OrdersComponent implements OnInit {
    * @param:alertOutput - holds the value emitted from the alert component
    */
   public setStatus(alertOutput){
+    this.alertInput.displayModal = false;
     if (alertOutput.status) {
       this.store.dispatch(changeStatus({orderId:alertOutput.orderId,status:alertOutput.statusValue}))
-      this.alertInput.displayModal = false;
     }
   }
 }
