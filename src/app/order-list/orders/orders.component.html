@@ -1,0 +1,95 @@
+<!-- order list starts -->
+<div class="order-list">
+    <div class="container">
+        <p class="list-header">Orders List</p>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- tab header starts -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="allOrders-tab" data-toggle="tab" href="#allOrders" role="tab" aria-controls="allOrders" aria-selected="true">All Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="received" aria-selected="false">Received</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="preparing-tab" data-toggle="tab" href="#preparing" role="tab" aria-controls="preparing" aria-selected="false">Preparing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="readyToServe-tab" data-toggle="tab" href="#readyToServe" role="tab" aria-controls="readyToServe" aria-selected="false">Ready To Serve</a>
+                    </li>
+                </ul>
+                <!-- tab header ends -->
+                <!-- tab content starts -->
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="allOrders" role="tabpanel" aria-labelledby="allOrders-tab">
+                        <ng-container *ngTemplateOutlet="orderTable;context:{orderInfo:orderDetails}"></ng-container>
+                    </div>
+                    <div class="tab-pane fade" id="received" role="tabpanel" aria-labelledby="received-tab">
+                        <ng-container *ngTemplateOutlet="orderTable;context:{orderInfo:orderDetails | orderFilter : 'received'}"></ng-container>
+                    </div>
+                    <div class="tab-pane fade" id="preparing" role="tabpanel" aria-labelledby="preparing-tab">
+                        <ng-container *ngTemplateOutlet="orderTable;context:{orderInfo:orderDetails | orderFilter : 'preparing'}"></ng-container>
+                    </div>
+                    <div class="tab-pane fade" id="readyToServe" role="tabpanel" aria-labelledby="readyToServe-tab">
+                        <ng-container *ngTemplateOutlet="orderTable;context:{orderInfo:orderDetails | orderFilter : 'readyToServe'}"></ng-container>
+                    </div>
+                </div>
+                <!-- tab content ends -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- order list ends -->
+<!-- table container starts -->
+<ng-template #orderTable let-order="orderInfo">
+    <table class="table col-sm-12">
+        <!-- table header starts -->
+        <thead>
+            <tr class="order-head">
+                <th class="text-center">Order ID</th>
+                <th>Customer Name</th>
+                <th class="text-center">No.of Items Ordered</th>
+                <th class="text-center">Total Amount</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Ordered Date</th>
+                <th class="text-center">Action</th>
+            </tr>
+            <tr height="20px"></tr>
+        </thead>
+        <!-- table header ends -->
+        <!-- table body starts -->
+        <tbody>
+            <ng-container *ngFor="let value of order;let i = index;">
+            <tr class="order-content">
+                <td align='center'>{{value.orderId}}</td>
+                <td>{{value.customerInfo.title}} {{value.customerInfo.firstName}} {{value.customerInfo.lastName}}</td>
+                <td align='center'>{{value.items.length}}</td>
+                <td align='center'><em class="fa fa-{{value.fareInfo.currency | lowercase}}"></em> {{value.fareInfo.grandTotal}}</td>
+                <td align='center' class="cls-status">
+                    <div class="dropdown">
+                        <button class="status btn btn-secondary dropdown-toggle {{value.status}}" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{statusLabel[value.status]}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="javascript:;" (click)="changeStatus('received',value.orderId)">Received</a>
+                            <a class="dropdown-item" href="javascript:;" (click)="changeStatus('preparing',value.orderId)">Preparing</a>
+                            <a class="dropdown-item" href="javascript:;" (click)="changeStatus('readyToServe',value.orderId)">Ready to serve</a>
+                        </div>
+                        </div>
+                </td>
+                <td align='center'>{{value.createdDate | date:'dd MMM, Y'}}</td>
+                <td align='center'><a class="view" (click)="viewOrder(value)" href="javascript:;">View</a></td>
+            </tr>
+            <tr height="15px"></tr>
+            </ng-container>
+        </tbody>
+        <!-- table body ends -->
+    </table>
+    <div class="text-center" *ngIf="order.length === 0">
+        <img height="250" alt="no data" src="../../../assets/images/no-data.svg">
+        <span class="no-data">No Data Found ! ! !</span>
+    </div>
+</ng-template>
+<!-- table container ends -->
+<app-alert *ngIf="alertInput?.displayModal" [alertInput]="alertInput" (alertOutput) = "setStatus($event)"></app-alert>

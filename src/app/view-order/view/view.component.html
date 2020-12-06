@@ -1,0 +1,108 @@
+<div class="container" *ngIf="orderInfo.orderId">
+    <span class="view-header">View Order</span>
+    <span class="backtolist" (click)="backToList()"><span class="fa fa-arrow-left"></span>Back To List</span>
+    <div class="row">
+        <div class="col-sm-8 order-left">
+            <!-- order details starts -->
+            <div class="order-info cls-card">
+                <span class="order-id">Order #{{orderInfo.orderId}}</span>
+                <span class="order-status {{orderInfo.status}}">{{statusLabel[orderInfo.status]}}</span>
+                <span class="order-date">{{orderInfo.createdDate | date:'dd MMM, Y'}}</span>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let itemValue of orderInfo.items">
+                            <td class="image-td">
+                                <img class="pizza-img" src="../../../assets/images/{{itemValue.itemCode}}.jpg">
+                            </td>
+                            <td>
+                                <span title="Name" class="item-name">{{itemValue.itemName}}</span>
+                                <span class="d-block extra">{{itemValue.description}}</span>
+                            </td>
+                            <td>
+                                <span title="Quantity">{{itemValue.quantity}} x</span>
+                            </td>
+                            <td>
+                                <span title="Unit Price"><em class="fa fa-{{itemValue.currency | lowercase}}"></em> {{itemValue.unitPrice}}</span>
+                            </td>
+                            <td>
+                                <span title="Amount"><em class="fa fa-{{itemValue.currency | lowercase}}"></em> {{itemValue.totalPrice}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- order details ends -->
+            <!-- user comments starts -->
+            <div class="order-info additional-info cls-card">
+                <span class="order-id">User Comments</span>
+                <p class="comment p-3">{{orderInfo.userComments}}</p>
+            </div>
+            <!-- user comments ends -->
+        </div>
+        <div class="col-sm-4 order-right">
+            <!-- contact info starts -->
+            <div class="order-address cls-card">
+                <span class="profile">{{orderInfo.customerInfo.firstName[0]}}</span><span class="customer-name">{{orderInfo.customerInfo.title}} {{orderInfo.customerInfo.firstName}} {{orderInfo.customerInfo.lastName}}</span>
+                <div class="contact-info">
+                    <span class="contact-email"><em class="fa fa-envelope-o"></em>{{orderInfo.customerInfo.emailId}}</span>
+                    <span class="d-block mb-1"><em class="fa fa-phone"></em>{{orderInfo.customerInfo.phoneCode}} {{orderInfo.customerInfo.mobileNo}}</span>
+                </div>
+                <div class="delivery-addr">
+                    <p class="head mb-2">Delivery Address</p>
+                    <span>
+                        {{orderInfo.customerInfo.address}},
+                    </span>
+                    <p class="dist">
+                        {{orderInfo.customerInfo.district}},
+                    </p>
+                    <span>
+                        {{orderInfo.customerInfo.state}}, {{orderInfo.customerInfo.country}}.
+                    </span>
+                </div>
+            </div>
+            <!-- contact info ends -->
+            <!-- fare summary starts -->
+            <div class="order-address fare-summary cls-card">
+                <p class="customer-head">Fare Summary</p>
+                <div class="fares">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td align="left">Sub total</td>
+                                <td align="right">
+                                    <em class="fa fa-{{orderInfo.fareInfo.currency | lowercase}}"></em> {{orderInfo.fareInfo.subTotal}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">GST</td>
+                                <td align="right">
+                                    <em class="fa fa-{{orderInfo.fareInfo.currency | lowercase}}"></em> {{orderInfo.fareInfo.GST}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Discount Applied</td>
+                                <td align="right">
+                                    <em class="fa fa-{{orderInfo.fareInfo.currency | lowercase}}"></em> {{orderInfo.fareInfo.discount}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Delivery Charges</td>
+                                <td align="right">
+                                    <em class="fa fa-{{orderInfo.fareInfo.currency | lowercase}}"></em> {{orderInfo.fareInfo.deliveryCharges}}
+                                </td>
+                            </tr>
+                            <tr height="5px"></tr>
+                            <tr class="grand-total">
+                                <td align="left">Grand Total</td>
+                                <td align="right">
+                                    <em class="fa fa-{{orderInfo.fareInfo.currency | lowercase}}"></em> {{orderInfo.fareInfo.grandTotal}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- fare summary ends -->
+        </div>
+    </div>
+</div>

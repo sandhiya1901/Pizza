@@ -1,0 +1,24 @@
+  <!-- Modal container starts -->
+  <div class="modal fade show" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Status Change</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="setValue(false)" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- alert content starts -->
+        <div class="modal-body">
+          {{alertInput.alertContent}}
+        </div>
+        <!-- alert content ends -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal" (click)="setValue(true)">Yes</button>
+          <button type="button" class="btn no-btn" (click)="setValue(false)">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal container ends -->
+  <span class="back"></span>

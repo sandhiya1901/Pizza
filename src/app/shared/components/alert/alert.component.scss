@@ -1,0 +1,28 @@
+@import "../../../../assets/scss/variables.scss";
+
+.modal{
+    display: block;
+    border-radius : 5px 5px 10px 10px;
+    .modal-content{
+        border-radius: 5px 5px 10px 10px;
+    }
+    .modal-footer{
+        justify-content: center;
+        border: 0;
+        .btn{
+            width: 60px;
+        }
+        .no-btn{
+            border: 1px solid $BORDERDARKER;
+        }
+    }
+}
+.back{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: $TEXTDARK;
+    opacity: 0.6;
+}

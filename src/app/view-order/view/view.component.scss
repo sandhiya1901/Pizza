@@ -1,0 +1,187 @@
+@import "../../../assets/scss/variables.scss";
+@mixin statusbox($colorCode){
+    border: 1px solid $colorCode;
+    color: $colorCode;
+    background: lighten($colorCode, 30%);
+}
+.view-header{
+    font-weight: bold;
+    font-size: 26px;
+    color: $TEXTDARKER;
+    padding-top: 20px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+.backtolist{
+    float: right;
+    margin: 30px 0 10px 0;
+    cursor: pointer;
+    border-bottom: 1px dashed;
+    .fa-arrow-left{
+        padding-right: 10px;
+    }
+    &:hover{
+        .fa-arrow-left{
+            transition: 0.5s;
+            padding-right: 15px;
+        }
+    }
+}
+.cls-card{
+    background: $PRIMARYCOLOR;
+}
+.order-left{
+    .order-info{
+        box-shadow: 0px 1px 6px $BORDERDARKER;
+        border-radius: 6px;
+        padding-top: 15px;
+        tr{
+            .image-td{
+                width: 100px;
+            }
+            td{
+                border-top: 0;
+                vertical-align: middle;
+                .pizza-img{
+                    height: 50px;
+                    width: 70px;
+                    border-radius: 4px;
+                }
+                .item-name{
+                    font-weight: 500;
+                    color: $TEXTDARKER;
+                }
+                .extra{
+                    font-size: 14px;
+                    color: $TEXTLIGHT;
+                }
+            }
+        }
+        .order-status{
+            float: right;
+            padding: 2px 15px;
+            border-radius: 5px;
+            margin-right: 35px;
+        }
+        .order-date{
+            float: right;
+            margin: 4px 15px;
+            font-weight: bold;
+            color: #666;
+        }
+        .received{
+            @include statusbox($RECEIVEDSTATUS);
+        }
+        .preparing{
+            @include statusbox($PREPARINGSTATUS);
+        }
+        .readyToServe{
+            @include statusbox($READYTOSERVESTATUS);
+        }
+        .order-id{
+            padding: 12px;
+            font-size: 19px;
+        }
+    }
+    .additional-info{
+        .comment{
+            font-style: italic;
+        }
+    }
+    .fare-summary{
+        padding: 25px 25px 0 25px;
+        box-shadow: 0px 1px 6px $BORDERDARKER;
+        border-radius: 6px;
+        .customer-head{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        margin-top:20px;
+        td{
+            border:0;
+        }
+        .grand-total{
+            font-weight: bold;
+            border-top: 1px solid $BORDERDARKER;
+        }
+    }
+}
+.order-right{
+    .order-address{
+        padding: 13px 25px;
+        box-shadow: 0px 1px 6px $BORDERDARKER;
+        border-radius: 6px;
+        .customer-head{
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+        .customer-name{
+            margin-left: 15px;
+            margin-top: -7px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .profile{
+            padding: 5px 12px;
+            border-radius: 100%;
+            background: $BORDERLIGHTER;
+            color: $TEXTLIGHTER;
+            font-weight: bold;
+            font-size: 28px;
+            box-shadow: 1px 1px 3px $BORDERDARKER;
+        }
+        .head{
+            font-size: 18px;
+            font-weight: bold;
+            color: $TEXTDARKER;
+        }
+        .contact-info{
+            margin-top: 20px;
+            .contact-email{
+                margin: 7px 0;
+                display: inline-block;
+            }
+            .fa-envelope-o,.fa-phone{
+                padding-bottom: 10px;
+                &::before{
+                    padding-right: 10px;
+                }
+            }
+        }
+        .delivery-addr{
+            span,.dist{
+                margin: 0;
+                font-size: 15px;
+                line-height: 25px;
+            }
+        }
+        .rest-addr{
+            margin-top:20px;
+        }
+    }
+    .fare-summary{
+        padding: 15px 25px;
+        margin-top: 20px;
+        .customer-head{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        margin-top:20px;
+        table{
+            margin-bottom: 0;
+            td{
+                border: 0;
+                line-height: 10px;
+                padding: 12px 0px;
+            }
+            .grand-total{
+                font-weight: bold;
+                border-top: 1px solid $BORDERDARKER;
+                td{
+                    padding-top: 20px;
+                }
+            }
+        }        
+    }
+}

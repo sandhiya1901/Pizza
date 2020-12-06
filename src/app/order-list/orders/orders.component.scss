@@ -1,0 +1,95 @@
+@import "../../../assets/scss/variables.scss";
+.order-list{
+    .nav-tabs{
+        margin-bottom: 30px;
+        border: 0;
+        background: $PRIMARYCOLOR;
+        width: 522px;
+        box-shadow: 1px 2px 8px $BORDERDARKER;
+        overflow: hidden;
+        .nav-link.active{
+            background: lighten($LINKCOLOR, 62%);
+            border-bottom: 3px solid $LINKCOLOR;
+            border-radius: 0;
+            color: $LINKCOLOR;
+        }
+        .nav-link{
+            color: $TEXTDARKER;
+            border: 0;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+    }
+    .list-header{
+        font-weight: bold;
+        font-size: 26px;
+        color: $TEXTDARKER;
+        padding-top: 15px;
+        margin-bottom: 25px;
+    }
+    .status{
+        border: 0;
+        width: 160px;
+        position: relative;
+        text-align: left;
+        &::after{
+            position: absolute;
+            right: 6px;
+            top: 16px;
+        }
+        &:focus{
+            box-shadow: none;
+        }
+    }
+    .received{
+        background: $RECEIVEDSTATUS;
+    }
+    .preparing{
+        background: $PREPARINGSTATUS;
+    }
+    .readyToServe{
+        background: $READYTOSERVESTATUS;
+    }
+    table{
+        thead{
+            .order-head{
+                background: $PRIMARYCOLOR;
+                box-shadow: 1px 1px 2px $BORDERLIGHTER;
+                th{
+                    border-top: 0;
+                    border-bottom: 0;
+                    padding: 15px 10px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    color: $TEXTDARKER;
+                }
+            }
+        }
+        tbody{
+            .order-content{
+                box-shadow: 0px 0px 2px $BORDERDARKER;
+                border-radius: 5px;
+                background: $PRIMARYCOLOR;
+                td{
+                    border-top: 0;
+                    padding-top: 17px;
+                    .view{
+                        border-bottom: 1px dashed;
+                        color: $LINKCOLOR;
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                }
+                .cls-status{
+                    padding-top: 12px;
+                }
+            }
+        }
+    }
+    .no-data{
+        display: block;
+        font-size: 28px;
+        color: $TEXTDARK;
+    }
+}
